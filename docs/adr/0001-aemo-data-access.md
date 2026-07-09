@@ -4,11 +4,9 @@
 
 Accepted — 9 July 2026
 
-(Individual personal project - This is the project standard I will follow)
-
 ## Context
 
-AEMO changed its data access setup in early 2026, and a lot of existing tutorials that scrape the old NEMweb URLs are now out of date. Before writing any ingestion code, I checked what the current public access method actually is.
+AEMO changed its data access setup in April 2026, and a lot of existing tutorials that scrape the old NEMweb URLs are now out of date. Before writing any ingestion code, I checked what the current public access method actually is.
 
 Two options were checked:
 
@@ -46,14 +44,14 @@ AEMO timestamps mark the **end** of the interval, not the start — a row timest
 
 ### Alternatives considered
 
-- **`dev.aemo.com.au` REST APIs** — rejected, participant-accredited only not public.
+- **`dev.aemo.com.au` REST APIs** — rejected, participant-accredited, not public.
 - **NEMOSIS / nem-data** — existing Python packages that already wrap NEMweb access. Not used on purpose — writing the client and parser myself is the point of this project.
 
 ## Decision
 
 Ingest directly from NEMweb (`Reports/CURRENT/` and `Reports/ARCHIVE/`) over plain HTTPS, no authentication needed. Use `DispatchIS_Reports` (price) and `Dispatch_SCADA` (generation) as the two time-series sources, and `CDEII` as the fuel-type/region reference. Write a custom parser for the `C`/`I`/`D` row format.
 
-## reperucussions
+## Consequences
 
 - No credentials needed for ingestion, which keeps the client and CI simple.
 - The custom parser is the trickiest part of the project and needs solid test coverage.
