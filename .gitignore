@@ -1,0 +1,47 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+.eggs/
+.venv/
+venv/
+env/
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+
+# --- Environment / secrets ---
+.env
+*.env.local
+
+# --- dbt ---
+dbt_project/target/
+dbt_project/dbt_packages/
+dbt_project/logs/
+dbt_project/.user.yml
+dbt_project/profiles.yml
+
+# --- Data landing zone / warehouse (never commit real data) ---
+data/
+landing/
+warehouse/
+*.duckdb
+*.duckdb.wal
+
+# --- Metabase ---
+metabase-data/
+
+# --- Editors / OS ---
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# --- Logs ---
+*.log
+logs/
